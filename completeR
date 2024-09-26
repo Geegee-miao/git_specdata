@@ -1,0 +1,27 @@
+## Project Assignment pt2: week 2 - Air Pollution
+
+## Use the loop function to run all 332 files in the same function by replacing "1" in filelist with a variable.
+nobs <- numeric()  ## nobs can only be a number
+sum(complete.cases(read.csv(filelist[1])))  ## sum all complete cases for 001.csv. only TRUE value will sum
+## then create a new nobs that replaces the previous nobs value. the 'nobs' vector is the previous nobs
+nobs <- c(nobs, sum(complete.cases(read.csv(filelist[1]))))
+nobs <- c(nobs, sum(complete.cases(read.csv(filelist[2]))))
+nobs <- c(nobs, sum(complete.cases(read.csv(filelist[3]))))
+nobs <- c(nobs, sum(complete.cases(read.csv(filelist[4]))))
+nobs <- c(nobs, sum(complete.cases(read.csv(filelist[5]))))
+nobs <- c(nobs, sum(complete.cases(read.csv(filelist[6]))))
+nobs
+
+## The complete loop function :
+
+complete <- function(directory, id = 1:332){
+    filelist <- list.files(path = "specdata", pattern = ".csv", full.names = TRUE)
+    nobs <- numeric()
+    
+    for(i in id){
+        data <- read.csv(filelist[i])
+        nobs <- c(nobs, sum(complete.cases(data)))
+    }
+    data.frame(id, nobs)
+}
+
