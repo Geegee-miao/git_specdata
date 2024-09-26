@@ -1,0 +1,17 @@
+## Project Assignment pt 1: week 2 - Air Pollution
+
+
+
+pollutantmean <- function(directory, pollutant, id = 1:332){
+    filelist <- list.files(path ="specdata", pattern = ".csv", full.names = TRUE)
+    values <- numeric()
+    
+    for (id in id){
+        data <- read.csv(filelist[id])
+        values <- c(values, data[[pollutant]])
+    }
+    mean(values, na.rm = TRUE)
+}
+
+
+pollutantmean("specdata", "sulfate", 1:332)
